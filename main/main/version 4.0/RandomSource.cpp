@@ -1,20 +1,20 @@
 #include "stdafx.h"
 #include <iostream>
 #include <cstdlib>
-#include "aRandomNumberGenerator.h"
-#include "aHistogram.h"
+#include "RandomNumberGenerator.h"
+#include "Histogram.h"
 
 using namespace std;
 
 // Constructor for the range and iterator, initially set low = 0 high = 1 and iterator = 9000
-aRandomNumberGenerator::aRandomNumberGenerator(int low, int high, int iter) : rangeLow(low), rangeHigh(high), iterations(iter)
+RandomNumberGenerator::RandomNumberGenerator(int low, int high, int iter) : rangeLow(low), rangeHigh(high), iterations(iter)
 {
 	validateRange(low, high);
 	validateIterator(iter);
 }
 
 // Validates the range to handle some errors.
-void aRandomNumberGenerator::validateRange(int lower, int higher)
+void RandomNumberGenerator::validateRange(int lower, int higher)
 {
 	while(higher < lower || lower < 0)
 	{
@@ -26,7 +26,7 @@ void aRandomNumberGenerator::validateRange(int lower, int higher)
 }
 
 // Validates the iterator to handle some errors.
-void aRandomNumberGenerator::validateIterator(int iter)
+void RandomNumberGenerator::validateIterator(int iter)
 {
 	while(iter <= 0)
 	{
@@ -37,47 +37,47 @@ void aRandomNumberGenerator::validateIterator(int iter)
 }
 
 // Sets the low and high range for the object.
-void aRandomNumberGenerator::setRange(int lower, int upper)
+void RandomNumberGenerator::setRange(int lower, int upper)
 {
 	rangeHigh = upper;
 	rangeLow = lower;
 }
 
 // Gets the lower end of the range for the object.
-int aRandomNumberGenerator::getRangeLow() const
+int RandomNumberGenerator::getRangeLow() const
 {
 	return rangeLow;
 }
 
 // Gets the upper end of the range for the object.
-int aRandomNumberGenerator::getRangeHigh() const
+int RandomNumberGenerator::getRangeHigh() const
 {
 	return rangeHigh;
 }
 
 // Sets the iterator for the Object
-void aRandomNumberGenerator::setIterator(int iter)
+void RandomNumberGenerator::setIterator(int iter)
 {
 	iterations = iter;
 }
 
 // Gets the iterator for the object
-int aRandomNumberGenerator::getIterations() const
+int RandomNumberGenerator::getIterations() const
 {
 	return iterations;
 }
 
 // Finds the difference of the range and returns it for use
-int aRandomNumberGenerator::getDifferenceRange() const
+int RandomNumberGenerator::getDifferenceRange() const
 {
-	return (( getRangeHigh() - getRangeLow() ) + 1);
+	int difference = (( getRangeHigh() - getRangeLow() ) + 1);
+	return difference;
 }
 
-// Generates the numbers doesn't need to count the frequency
-int aRandomNumberGenerator::generateNumber()
+// Generates the random number.
+int RandomNumberGenerator::generateNumber() const
 {
 	static int number;
 	number = getRangeLow() + rand() % getDifferenceRange();
-
 	return number;
 }

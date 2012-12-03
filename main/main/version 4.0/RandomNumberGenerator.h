@@ -1,10 +1,10 @@
 #ifndef aRandomNumberGenerator_H
 #define aRandomNumberGenerator_H
 
-class aRandomNumberGenerator
+class RandomNumberGenerator
 {
 public:
-	aRandomNumberGenerator(int low = 0, int high = 1, int iter = 9000);
+	RandomNumberGenerator(int low = 0, int high = 1, int iter = 9000);
 	void validateRange(int low, int high);
 	void validateIterator(int iter);
 	void setRange(int low, int high);
@@ -13,7 +13,7 @@ public:
 	void setIterator(int iter);
 	int getIterations() const;
 	int getDifferenceRange() const;
-	int generateNumber();
+	virtual int generateNumber() const;
 
 private:
 	int rangeHigh, rangeLow, iterations;
